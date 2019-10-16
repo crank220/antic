@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>onpageshow</title>
+  <script>
+    function bodyPageshow() {
+      console.log('body.onpageshow')
+      console.log(`该页面${event.persisted ? '是' : '不是'}从浏览器缓存中读取！`)
+    }
+
+    window.onload = function() {
+      console.log('window.onload')
+    }
+
+    window.addEventListener('pageshow', function() {
+      console.log('window.onpageshow')
+      console.log(`该页面${event.persisted ? '是' : '不是'}从浏览器缓存中读取！`)
+    })
+  </script>
+</head>
+<body onpageshow='bodyPageshow()'>
+  <h1>onpageshow</h1>
+  <h2>场景：热更新 单点登录</h2>
+  <h3>
+    onpageshow 事件在用户浏览网页时触发。<br>
+    onpageshow 事件类似于 onload 事件，onload 事件在页面第一次加载时触发， onpageshow 事件在每次加载页面时触发，即 onload 事件在页面从浏览器缓存中读取时不触发。<br>
+    为了查看页面是直接从服务器上载入还是从缓存中读取，你可以使用 PageTransitionEvent 对象的 persisted 属性来判断。
+  </h3>
+</body>
+</html>
