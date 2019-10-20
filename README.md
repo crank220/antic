@@ -25,3 +25,14 @@
   [Android](https://www.html.cn/doc/chrome-devtools/remote-debugging/)
 
   [ios](https://github.com/google/ios-webkit-debug-proxy)
+
+## requestAnimationFrame
+  把每一帧中的所有DOM操作集中起来，重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，每秒60帧
+  
+  在隐藏或不可见的元素中，requestAnimationFrame将不会进行重绘或回流，这当然就意味着更少的的cpu，gpu和内存使用量
+
+  页面不是激活状态下的话，动画会自动暂停
+
+  [demo](./requestAnimationFrame/index.html)
+  
+  [api](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)

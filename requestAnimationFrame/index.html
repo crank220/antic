@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>requestAnimationFrame</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    ul {
+      height: 400px;
+      overflow: auto;
+    }
+    ul li{
+      height: 100px;
+      line-height: 100px;
+      list-style: none;
+      text-align: center;
+    }
+    .on{
+      background: #EAEAEA;
+      color: red;
+    }
+  </style>
+  <script>
+    // window.requestAnimationFrame() 告诉浏览器——你希望执行一个动画，并且要求浏览器在下次重绘之前调用指定的回调函数更新动画。
+    // 该方法需要传入一个回调函数作为参数，该回调函数会在浏览器下一次重绘之前执行
+    // 当你准备更新动画时你应该调用此方法。这将使浏览器在下一次重绘之前调用你传入给该方法的动画函数(即你的回调函数)。
+
+    // 回调函数执行次数通常是每秒60次，但在大多数遵循W3C建议的浏览器中，回调函数执行次数通常与浏览器屏幕刷新次数相匹配。
+    // 我们经常用setInterval来实现动画，其实这种做法不是太好，因为不同浏览器的刷新频率也不一样（一般认为设置16为最佳,按每秒60帧算，1000/60≈16.67）
+
+    // requestAnimationFrame vs setTimeout、setInterval
+    // 优点
+    // requestAnimationFrame 会把每一帧中的所有DOM操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+    // 在隐藏或不可见的元素中，requestAnimationFrame将不会进行重绘或回流，这当然就意味着更少的的cpu，gpu和内存使用量。
+    // 特点
+    // requestAnimationFrame会把每一帧中的所有DOM操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率
+    // 在隐藏或不可见的元素中，requestAnimationFrame将不会进行重绘或回流，这当然就意味着更少的的cpu，gpu和内存使用量
+    // requestAnimationFrame是由浏览器专门为动画提供的API，在运行时浏览器会自动优化方法的调用，并且如果页面不是激活状态下的话，动画会自动暂停，有效节省了CPU开销
+    
+    let requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                            window.webkitRequestAnimationFrame || window.msRequestAnimationFrame
+    let cancelAnimationFrame = window.cancelAnimationFrame || window.mozCancelAnimationFrame
+
+    let cur = 0
+    const callback = timestamp => {
+      document.querySelector('p').innerHTML = `timestamp: ${timestamp}`
+      if (cur === 10) {
+        cancelAnimationFrame(callback)
+        return
+      }
+      
+      const items = document.querySelectorAll('li')
+      if (timestamp % 10000 > cur * 1000) {
+        cur++
+        items.forEach(item => item.className = '')
+        items[cur - 1].className = 'on'
+        items[cur - 1].scrollIntoView({ block: 'center', behavior: 'smooth' })
+      }
+
+      requestAnimationFrame(callback)
+    }
+    
+    requestAnimationFrame(callback)
+  </script>
+</head>
+<body>
+  <ul>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+  </ul>
+  <p></p>
+</body>
+</html>
