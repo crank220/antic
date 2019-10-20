@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>getBoundingClientRect</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    div{
+      margin: 25px;
+      padding: 12px;
+      height: 63px;
+      background: darkcyan;
+      display: inline-block;
+    }
+  </style>
+  <script>
+    // 当计算边界矩形时，会考虑视口区域（或其他可滚动元素）内的滚动操作，也就是说，当滚动位置发生了改变，top和left属性值就会随之立即发生变化（因此，它们的值是相对于视口的，而不是绝对的）。
+    // 如果你需要获得相对于整个网页左上角定位的属性值，那么只要给top、left属性值加上当前的滚动位置（通过window.scrollX和window.scrollY），这样就可以获取与当前的滚动位置无关的值。
+    window.onload = function () {
+      const items = document.querySelector('div')
+      items.innerHTML = JSON.stringify(items.getBoundingClientRect())
+      console.log(items.getBoundingClientRect(), JSON.parse(JSON.stringify(items.getBoundingClientRect())))
+    }
+  </script>
+</head>
+<body>
+  Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置。
+  <div></div>
+</body>
+</html>

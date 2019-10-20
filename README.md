@@ -36,3 +36,12 @@
   [demo](./requestAnimationFrame/index.html)
   
   [api](https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame)
+
+  ## getBoundingClientRect 
+  Element.getBoundingClientRect()方法返回元素的大小及其相对于视口的位置
+
+  当计算边界矩形时，会考虑视口区域（或其他可滚动元素）内的滚动操作，也就是说，当滚动位置发生了改变，top和left属性值就会随之立即发生变化（因此，它们的值是相对于视口的，而不是绝对的）。
+
+  [demo](./getBoundingClientRect/index.html)
+
+  [api](https://developer.mozilla.org/zh-CN/docs/Web/API/Element/getBoundingClientRect)
