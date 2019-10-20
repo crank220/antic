@@ -19,3 +19,9 @@
   [demo](./will-change/index.html)
 
   [api](https://developer.mozilla.org/zh-CN/docs/Web/CSS/will-change)
+
+## 远程调试 Android/ios 手机设备
+
+  [Android](https://www.html.cn/doc/chrome-devtools/remote-debugging/)
+
+  [ios](https://github.com/google/ios-webkit-debug-proxy)
